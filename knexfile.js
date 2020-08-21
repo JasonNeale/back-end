@@ -14,7 +14,7 @@ module.exports = {
     },
   },
   production: {
-    client: 'sqlite3',
+    client: 'postgresql',
     connection: {
       host: "ec2-34-238-26-109.compute-1.amazonaws.com",
       database: "d657adpq522u6o",
