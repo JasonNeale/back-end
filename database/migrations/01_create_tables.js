@@ -1,18 +1,18 @@
 exports.up = function(knex) {
     return knex.schema
-    .createTable("users", user => {
-		user.increments()
-		user
+    .createTable("members", member => {
+		member.increments()
+		member
         .string("username", 128)
         .notNullable()
         .unique()
-        user.string("password")
+        member.string("password")
         .notNullable()
-		user.string("first_name")
-		user.string("last_name")
-		user.string("email")
+		member.string("first_name")
+		member.string("last_name")
+		member.string("email")
 		.unique()
-		user.string("token")
+		member.string("token")
 	})
     .createTable("friends", friend => {
 		friend.increments()
@@ -22,7 +22,7 @@ exports.up = function(knex) {
 		.notNullable()
 		.unsigned()
 		.references("id")
-		.inTable("users")
+		.inTable("members")
 		.onUpdate("CASCADE")
 		.onDelete("CASCADE")
 		friend.string("token")
@@ -35,7 +35,7 @@ exports.up = function(knex) {
 		.notNullable()
 		.unsigned()
 		.references("id")
-		.inTable("users")
+		.inTable("members")
 		.onUpdate("CASCADE")
 		.onDelete("CASCADE")
     })
@@ -58,7 +58,7 @@ exports.up = function(knex) {
 }
 
 exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists("users")
+    await knex.schema.dropTableIfExists("members")
     await knex.schema.dropTableIfExists("friends")
     await knex.schema.dropTableIfExists("playlists")
     await knex.schema.dropTableIfExists("songs")
