@@ -7,11 +7,14 @@ module.exports = (req, res, next) => {
     const token = req.headers.authorization
 
       jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
-        console.log(err)
+        
         if (err) {
+          console.log('JWT Error: ', err)
           res.status(401).json({ message: 'You are not authorized to view this.' })
         } else {
+          console.log('JWT decodedToken: ', decodedToken)
           req.decodedJwt = decodedToken
+          console.log('JWT req.decodedJwt: ', req.decodedJwt)
           next()
         }
       })
