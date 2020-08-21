@@ -2,7 +2,6 @@ const bcryptjs = require('bcryptjs')
 const router = require('express').Router()
 const Users = require('../app/users')
 const { isValid } = require('../resources/js/users-service')
-
 const { generateToken } = require('../app/http/controllers/Auth')
 
 
@@ -10,7 +9,7 @@ router.post('/register', (req, res) => {
   const credentials = req.body
 
   if (isValid(credentials)) {
-    const rounds = process.env.BCRYPT_ROUNDS || 8
+    const rounds = 8
     const hash = bcryptjs.hashSync(credentials.password, rounds)
 
     credentials.password = hash
@@ -34,8 +33,11 @@ router.post('/login', (req, res) => {
     .then(([user]) => {
       if (user && bcryptjs.compareSync(password, user.password)) {
         const token = generateToken(user)
-        localStorage.setItem({token: token})
-        res.status(200).json({ message: token })
+        Users.updateUser({token: token}, user.id)
+        res.status(200).json({ 
+          message: `Login successful.`,
+          token: token 
+        })
         } else {
           res.status(401).json({ error: 'Invalid credentials.' })
         }

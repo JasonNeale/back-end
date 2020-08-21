@@ -1,12 +1,5 @@
 const db = require("../config/dbConfig")
 
-module.exports = {
-  add,
-  find,
-  findBy,
-  findById,
-}
-
 function find() {
   return db("users").select("id", "username")
 }
@@ -25,4 +18,16 @@ function findById(id) {
   return db("users")
     .where({ id })
     .first()
+}
+
+function updateUser(changes, id) {
+  return db('users').where({ id }).update(changes)
+}
+
+module.exports = {
+  add,
+  find,
+  findBy,
+  findById,
+  updateUser
 }
