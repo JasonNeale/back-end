@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         
         if (err) {
           console.log('JWT Error: ', err)
-          res.status(401).json({ message: 'You are not authorized to view this.' })
+          res.status(401).json({ message: `You are not authorized to view this. ERROR: ${err}` })
         } else {
           console.log('JWT decodedToken: ', decodedToken)
           req.decodedJwt = decodedToken
