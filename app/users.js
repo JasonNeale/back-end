@@ -9,9 +9,13 @@ function findBy(filter) {
 }
 
 async function add(user) {
-  const [id] = await db("members").insert(user, "id")
+  try {
+    const [id] = await db("members").insert(user, "id")
 
-  return findById(id)
+    return findById(id)
+  } catch (error) {
+    throw error
+  }
 }
 
 function findById(id) {
