@@ -19,19 +19,33 @@ async function add(user) {
 }
 
 function findById(id) {
-  return db("members")
-    .where({ id })
-    .first()
+  return db("members").where({ id }).first()
 }
 
-function updateUser(changes, id) {
+function findFollowersById(id) {
+  return db("friends").where("follower", id)
+}
+
+function findFollowingById(id) {
+  return db("friends").where("following", id)
+}
+
+function update(id, changes) {
   return db('members').where({ id }).update(changes)
 }
+
+function remove(id) {
+  return db("members").where("id", id).del()
+}
+
 
 module.exports = {
   add,
   find,
   findBy,
   findById,
-  updateUser
+  findFollowersById,
+  findFollowingById,
+  update,
+  remove
 }

@@ -25,7 +25,6 @@ exports.up = function(knex) {
 		.inTable("members")
 		.onUpdate("CASCADE")
 		.onDelete("CASCADE")
-		friend.string("token")
     })
     .createTable("playlists", playlist => {
         playlist.increments()
