@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
 
   try {
     const token = req.headers.authorization
-
+      console.log('Restricted Token: ', token)
       jwt.verify(token, secrets.jwtSecret, (err, decodedToken) => {
         
         if (err) {

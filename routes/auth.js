@@ -1,8 +1,8 @@
 const bcryptjs = require('bcryptjs')
 const router = require('express').Router()
-const Users = require('../app/users')
+const Users = require('../app/Users')
 const { isValid } = require('../resources/js/users-service')
-const { generateToken } = require('../app/http/controllers/Auth')
+const { generateToken } = require('../app/http/controllers/AuthController')
 
 
 router.post('/register', (req, res) => {
@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
         const dbToken = {token: token}
         Users.update(user.id, dbToken)
         .then(auth => {
-          res.status(200).json({message: `Registration successful`, user: user, token: token})
+          res.status(201).json({message: `Registration successful`, user: user, token: token})
         })
     })
     .catch(error => {res.status(500).json({error: error.message})

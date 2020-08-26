@@ -1,12 +1,5 @@
 const db = require("../config/dbConfig")
 
-function find() {
-  return db("members").select("id", "username")
-}
-
-function findBy(filter) {
-  return db("members").where(filter)
-}
 
 async function add(user) {
   try {
@@ -18,16 +11,34 @@ async function add(user) {
   }
 }
 
+async function addFriendship(friendship) {
+  try {
+    const [id] = await db("friends").insert({friendship})
+
+    return findById(id)
+  } catch (error) {
+    throw error
+  }
+}
+
+function find() {
+  return db("members").select("id", "username")
+}
+
+function findBy(filter) {
+  return db("members").where(filter).select()
+}
+
 function findById(id) {
-  return db("members").where({ id }).first()
+  return db("members").where("id", id).select()
 }
 
 function findFollowersById(id) {
-  return db("friends").where("follower", id)
+  return db("friends").where("follower", id).select()
 }
 
 function findFollowingById(id) {
-  return db("friends").where("following", id)
+  return db("friends").where("following", id).select()
 }
 
 function update(id, changes) {
@@ -41,6 +52,7 @@ function remove(id) {
 
 module.exports = {
   add,
+  addFriendship,
   find,
   findBy,
   findById,
