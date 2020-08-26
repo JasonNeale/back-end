@@ -16,11 +16,11 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      host: "ec2-3-208-50-226.compute-1.amazonaws.com",
-      database: "d9thq6k5rdsd3f",
+      host: "ec2-54-91-178-234.compute-1.amazonaws.com",
+      database: "dbac5i9gi4gnot",
       port: "5432",
-      user: "nxoriwdknzzvoa",
-      password: "8c5651f068e52b6590e0c4823f8bd59f82484c29e6354696db0c054e7b9e9c75",
+      user: "gjakgszayzrvdh",
+      password: "eb2afae5c6aa1830bfee6c2a0ea1262e58bdab15b8fea25777e380b568c00659",
     },
     useNullAsDefault: true,
     migrations: {
