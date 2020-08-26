@@ -34,9 +34,9 @@ exports.up = function(knex) {
 }
 
 exports.down = async function(knex) {
-    await knex.schema.dropTableIfExists("members")
-    await knex.schema.dropTableIfExists("friends")
-    await knex.schema.dropTableIfExists("playlists")
     await knex.schema.dropTableIfExists("playlist_songs")
+    await knex.schema.dropTableIfExists("playlists")
     await knex.schema.dropTableIfExists("songs")
+    await knex.schema.dropTableIfExists("friends")
+    await knex.schema.dropTableIfExists("members")
 }
