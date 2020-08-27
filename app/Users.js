@@ -3,7 +3,10 @@ const db = require("../config/dbConfig")
 
 async function add(user) {
   try {
-    const [id] = await db("users").insert({user})
+    const [id] = await db("users").insert({
+      username: user.username,
+      password: user.password
+    })
 
     return findById(id)
   } catch (error) {
