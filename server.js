@@ -6,12 +6,14 @@ const userRouter = require('./routes/user')
 const songsRouter = require('./routes/songs')
 const playlistsRouter = require('./routes/playlists')
 const playlistsSongsRouter = require('./routes/playlist_songs')
+const {logger} = require('./app/http/middleware/logger')
 const server = express()
 
 
 server.use(helmet())
 server.use(express.json())
 server.use(cors())
+server.use(logger)
 
 server.use('/api/auth', authRouter)
 server.use('/api/user', userRouter)

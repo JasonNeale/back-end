@@ -17,11 +17,7 @@ router.post('/register', (req, res) => {
     Users.add(credentials)
     .then(user => {
       const token = generateToken(user)
-        const dbToken = {token: token}
-        Users.update(user.id, dbToken)
-        .then(auth => {
-          res.status(201).json({message: `Registration successful`, user: user, token: token})
-        })
+      res.status(201).json({message: `Registration successful`, user: user, token: token})
     })
     .catch(error => {res.status(500).json({error: error.message})
     })
@@ -39,11 +35,7 @@ router.post('/login', (req, res) => {
       if (user && bcryptjs.compareSync(password, user.password)) {
         const token = generateToken(user)
         const dbToken = {token: token}
-        Users.update(user.id, dbToken)
-        .then(auth => {
-          res.status(200).json({message: `Login successful`, token: token})
-        })
-        .catch(err => {res.status(500).json({error: `There was an internal server error`})})
+        res.status(200).json({message: `Login successful`, token: token})
       } else {
         res.status(401).json({error: `Invalid credentials`})
       }
