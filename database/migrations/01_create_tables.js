@@ -1,13 +1,17 @@
 exports.up = function(knex) {
     return knex.schema
-    .createTable("users", member => {
-		member.increments()
-		member.string("username", 128).notNullable().unique()
-        member.string("password").notNullable()
-		member.string("first_name")
-		member.string("last_name")
-		member.string("email").unique()
-		member.string("token")
+    .createTable("dump", dumps => {
+        dumps.increments()
+        dumps.string("nothing")
+    })
+    .createTable("users", user => {
+		user.increments()
+		user.string("username", 128).notNullable().unique()
+        user.string("password").notNullable()
+		user.string("first_name")
+		user.string("last_name")
+		user.string("email").unique()
+		user.string("token")
 	})
     .createTable("friends", friend => {
 		friend.increments()
