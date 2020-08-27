@@ -7,7 +7,7 @@ function findByPlaylistId(playlist_id) {
 
 async function add(playlist_id, song_id) {
   try {
-    const [id] = await db("playlist_songs").insert({playlist_id: playlist_id, song_id: song_id})
+    const [id] = await db("playlist_songs").insert({playlist_id: playlist_id, song_id: song_id}, "id")
 
     return findByPlaylistId(playlist_id)
   } catch (error) {

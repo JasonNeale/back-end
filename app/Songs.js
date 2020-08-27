@@ -3,7 +3,7 @@ const db = require("../config/dbConfig")
 
 async function add(song) {
   try {
-    const [id] = await db("songs").insert(song)
+    const [id] = await db("songs").insert(song, "id")
     return findById(id)
   } catch (error) {
     throw error
