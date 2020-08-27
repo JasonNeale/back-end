@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env DB_ENV=testing jest --watchAll --verbose",
-    "start": "node index.js",
+    "start": "cross-env DB_ENV=production node index.js",
     "server": "cross-env DB_ENV=development nodemon index.js"
   },
   "repository": {
