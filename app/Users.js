@@ -42,7 +42,7 @@ function findFollowingById(id) {
 }
 
 function update(id, changes) {
-  return db('users').where({ id }).update(changes)
+  return db('users').where("id", id).update({changes})
 }
 
 function remove(id) {
