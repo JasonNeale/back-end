@@ -2,13 +2,16 @@ const db = require("../config/dbConfig")
 
 
 async function add(credentials) {
-  try {
-    const [id] = await db("users").insert(credentials)
+  // try {
+  //   const [id] = await db("users").insert(credentials)
 
-    return findById(id)
-  } catch (error) {
-    throw error
-  }
+  //   return findById(id)
+  // } catch (error) {
+  //   throw error
+  // }
+
+  const [id] = await db("users").insert(credentials)
+  return id
 }
 
 async function addFriendship(friendship) {
