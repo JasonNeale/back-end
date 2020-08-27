@@ -2,11 +2,12 @@ const db = require("../config/dbConfig")
 
 
 async function add(credentials) {
+  console.log('User.Add - credentials: ', credentials)
   try {
     const [id] = await db("users").insert(credentials)
-
+    console.log('User.Add - [id]: ', id)
     const result = findById(id)
-
+    console.log('User.Add - result: ', result)
     return result
   } catch (error) {
     throw error
