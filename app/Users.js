@@ -3,7 +3,7 @@ const db = require("../config/dbConfig")
 
 async function add(user) {
   try {
-    const [id] = await db("members").insert(user, "id")
+    const [id] = await db("users").insert(user, "id")
 
     return findById(id)
   } catch (error) {
@@ -22,15 +22,15 @@ async function addFriendship(friendship) {
 }
 
 function find() {
-  return db("members").select("id", "username")
+  return db("users").select("id", "username")
 }
 
 function findBy(filter) {
-  return db("members").where(filter).select()
+  return db("users").where(filter).select()
 }
 
 function findById(id) {
-  return db("members").where("id", id).select()
+  return db("users").where("id", id).select()
 }
 
 function findFollowersById(id) {
@@ -42,11 +42,11 @@ function findFollowingById(id) {
 }
 
 function update(id, changes) {
-  return db('members').where({ id }).update(changes)
+  return db('users').where({ id }).update(changes)
 }
 
 function remove(id) {
-  return db("members").where("id", id).del()
+  return db("users").where("id", id).del()
 }
 
 
