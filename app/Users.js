@@ -1,12 +1,9 @@
 const db = require("../config/dbConfig")
 
 
-async function add(user) {
+async function add(credentials) {
   try {
-    const [id] = await db("users").insert({
-      username: user.username,
-      password: user.password
-    })
+    const [id] = await db("users").insert(credentials, "id")
 
     return findById(id)
   } catch (error) {
