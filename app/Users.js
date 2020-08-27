@@ -16,7 +16,7 @@ async function add(credentials) {
 
 async function addFriendship(friendship) {
   try {
-    const [id] = await db("friends").insert({friendship})
+    const [id] = await db("friends").insert(friendship, "id")
 
     return findById(id)
   } catch (error) {
