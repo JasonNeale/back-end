@@ -19,6 +19,7 @@ exports.up = function(knex) {
         song.string("title").notNullable()
         song.string("album").notNullable()
         song.string("artist").notNullable()
+        song.string("spotify_id").notNullable()
         song.string("image_url")
     })
     .createTable("playlists", playlist => {
