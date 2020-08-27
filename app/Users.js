@@ -2,16 +2,15 @@ const db = require("../config/dbConfig")
 
 
 async function add(credentials) {
-  // try {
-  //   const [id] = await db("users").insert(credentials)
+  try {
+    const [id] = await db("users").insert(credentials)
 
-  //   return findById(id)
-  // } catch (error) {
-  //   throw error
-  // }
+    const result = findById(id)
 
-  const [id] = await db("users").insert(credentials)
-  return id
+    return result
+  } catch (error) {
+    throw error
+  }
 }
 
 async function addFriendship(friendship) {
@@ -32,8 +31,8 @@ function findBy(filter) {
   return db("users").where(filter).select()
 }
 
-function findById(id) {
-  return db("users").where("id", id).select()
+async function findById(id) {
+  return await db("users").where("id", id).select()
 }
 
 function findFollowersById(id) {
