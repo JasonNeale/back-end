@@ -1,5 +1,12 @@
-function logger(req, res, next) {
-    console.log( `[API SERVER LOG]:\n DATE: ${new Date().toISOString()}\n METHOD: ${req.method}\n URL: ${req.url}\n<------------------------------------->` )
+function logger(err, req, res, next) {
+    console.log( `
+    [API SERVER LOG]:
+    DATE: ${new Date().toISOString()}
+    METHOD: ${req.method}
+    URL: ${req.url}
+    ERROR: ${err.stack}
+    <------------------------------------->
+    ` )
     next()
 }
 
