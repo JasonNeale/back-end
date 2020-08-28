@@ -23,21 +23,3 @@ describe('Auth Route Tests', () => {
     const runTest = request(server).post('/api/auth/login').send(usera+usera).expect(500)
   })
 })
-
-describe('User Route Tests', () => {
-  it('/friends - should return 201 (created)', () => {
-    const runTest = request(server).post('/api/user/friends').send(user).expect(201)
-  })
-
-  it('Register - should return 400 (bad request)', async () => {
-    const runTest = await request(server).post('/api/auth/register').send('').expect(400)
-  })
-
-  it('Login - should return 401 (not found)', () => {
-    const runTest = request(server).post('/api/auth/login').send({username: 'JoeBiden', password: '987654321'}).expect(401)
-  })
-
-  it('Login - should return 500 (server error)', () => {
-    const runTest = request(server).post('/api/auth/login').send(user+user).expect(500)
-  })
-})
