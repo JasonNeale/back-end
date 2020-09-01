@@ -7,6 +7,7 @@ const usera = {username: 'TestUserA', password: '1234567890'}
 const userb = {username: 'TestUserB', password: '1234567890'}
 
 describe('Auth Route Tests', () => {
+  
   it('/register - should return 201 (created)', () => {
     const runTest = request(server).post('/api/auth/register').send(usera).expect(201)
   })
